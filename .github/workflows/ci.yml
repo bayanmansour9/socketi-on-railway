@@ -3,14 +3,14 @@ name: CI
 on:
   push:
     branches:
-      - '*'
+      - "*"
     tags:
-      - '*'
+      - "*"
     paths-ignore:
       - "**.md"
   pull_request:
     branches:
-      - '*'
+      - "*"
 
 jobs:
   build:
@@ -23,7 +23,7 @@ jobs:
 
       matrix:
         node:
-          - 16.x
+          - 20.x
         adapter:
           - local
           - redis
@@ -111,8 +111,8 @@ jobs:
       - name: Setup Localstack
         if: "matrix.queue_driver == 'sqs'"
         run: |
-          docker-compose up -d localstack
-          docker-compose run initialize_sqs
+          docker compose up -d localstack
+          docker compose run initialize_sqs
 
       - name: Setup NATS
         if: "matrix.adapter == 'nats'"
